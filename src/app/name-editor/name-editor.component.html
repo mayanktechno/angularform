@@ -1,0 +1,16 @@
+
+<form [formGroup]="signupForm" (ngSubmit)="postData(signupForm)">
+    <label>name
+        <input type="text" formControlName="name">
+    </label>
+
+    <label>email
+            <input type="text" formControlName="email">
+        </label>
+
+        <label>password
+                <input type="text" formControlName="password">
+            </label>
+
+          <input type="submit" value="submit">
+</form>

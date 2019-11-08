@@ -1,0 +1,64 @@
+<!-- <label>username
+    <input type="text" [formControl]="username">
+</label>
+<h3>username display : {{username.value}}</h3>
+<button (click)="updateUsername()">updateUsername</button> -->
+
+<form [formGroup]="userForm" (ngSubmit)="onsubmit()">
+<label>firstname
+    <input type="text" formControlName="firstname">
+</label>
+<div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
+    <div *ngIf="firstname.errors.required">firstname is required</div>
+    
+    <div *ngIf="firstname.errors.minlength">firstname min length is 6</div>
+    <div *ngIf="firstname.errors.pattern">firstname pattern not matched</div>
+    </div>
+<br/>
+<label>lastname
+        <input type="text" formControlName="lastname">
+    </label>
+    <br/>
+    <label>email
+            <input type="text" formControlName="email">
+        </label>
+        <br/>
+        <label>password
+                <input type="text" formControlName="password">
+            </label>
+            <br/>
+<br/>
+        <div formGroupName="address">
+             <label>address
+                   
+                </label>
+                <br/>
+                <label>city
+                        <input type="text" formControlName="city">
+                    </label>
+                    <br/> <label>state
+                            <input type="text" formControlName="state">
+                        </label>
+                        <br/> <label>country
+                                <input type="text" formControlName="country">
+                            </label>
+                            <br/>
+            </div>
+
+            <div formArrayName="mobiles">
+                    <label>Add Mobiles No.</label>
+                        <button (click)="addMobile()" type="button">+</button>
+                        <!-- <button (click)="deletemobile()" type="button">-</button> -->
+                        <br/> 
+                        <div *ngFor="let mob of mob2control.controls ; let i = index">
+                        <label>mob {{i+1}}</label>
+                        <input type="text" [formControlName]="i">
+                        <button *ngIf ="!i==0" (click)="deletemobile(i)"  type="button">-</button>
+                        <button *ngIf ="!i==0"  (click)="addMobile()" type="button">+</button>
+            </div>
+        </div>
+            <!-- <button type="submit"   [disabled]="!userForm.valid">submit</button> -->
+            <button type="submit" >submit</button>
+            <br/>
+            <button type="button" (click)="updatePartiallyform()">updatePartially</button>
+    </form>

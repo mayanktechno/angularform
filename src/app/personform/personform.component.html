@@ -1,0 +1,62 @@
+
+    <form class="container" [formGroup]="personform" (ngSubmit)="onsubmit()"> 
+        <label>Name</label>
+        <input type="text" formControlName="name"><br/>
+
+        <label>Username</label>
+        <input type="text" formControlName="username"><br/>
+
+        <label>email</label>
+        <input type="text" formControlName="email"><br/>
+
+        <div formGroupName = "address">
+            <label>Address</label><br/>
+              <label>street</label>
+                <input type="text" formControlName="street"><br/>
+                <label>suite</label>
+                <input type="text" formControlName="suite"><br/>
+
+                <label>city</label>
+                <input type="text" formControlName="city"><br/>
+                <label>zipcode</label>
+                <input type="text" formControlName="zipcode"><br/>
+        
+                    <div formGroupName="geo">
+                        <label>geo</label><br/>
+                                <label>lat</label>
+                            <input type="text" formControlName="lat"><br/>
+                                <label>lng</label>
+                             <input type="text" formControlName="lng"><br/>
+                    </div>
+
+            </div>
+
+            <div formArrayName="specialisation">
+                <label>Add Specialisation</label>
+                <button type="button" (click)="addspecialisation()">+</button>
+                <div *ngFor="let add of specialControl.controls ; let i = index">
+                    <div [formGroupName]="i">
+                    <label>profile {{i+1}}</label>
+                        <input type="text" formControlName = "profile">
+                        <label>technology</label>
+                        <input type="text" formControlName = "technology">
+                        <button *ngIf="!i==0" (click)="delSpecial(i)">-</button>
+                  </div>   
+                </div>
+            </div>
+         <label>phone</label>
+        <input type="text" formControlName="phone"><br/>
+        <label>website</label>
+        <input type="text" formControlName="website"><br/>
+        <div formGroupName="company">
+            <label>company</label><br/>
+                <label>name</label>
+                <input type="text" formControlName="name"><br/>
+                <label>catchphrase</label>
+                <input type="text" formControlName="catchphrase"><br/>
+                <label>bs</label>
+                <input type="text" formControlName="bs"><br/>
+        </div>
+        <button type="submit">submit</button>
+
+    </form>
